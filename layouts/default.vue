@@ -1,8 +1,15 @@
 <template>
-    <div>
-        <nuxt />
-    </div>
+    <nuxt />
 </template>
+
+<script>
+export default {
+    beforeMount() {
+        this.$store.dispatch('initialize');
+    },
+};
+</script>
+
 
 <style>
 html {
@@ -17,11 +24,22 @@ html {
   box-sizing: border-box;
 }
 
+html,body {
+    padding:0;
+    margin:0;
+    height:100%;
+}
+
 *,
 *:before,
 *:after {
   box-sizing: border-box;
   margin: 0;
+}
+
+#__layout,
+#__nuxt {
+  height: 100%;
 }
 
 .button--green {

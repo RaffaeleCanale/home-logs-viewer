@@ -13,6 +13,7 @@ COPY pages/ pages/
 COPY plugins/ plugins/
 COPY static/ static/
 COPY store/ store/
+COPY lib/ lib/
 
 COPY nuxt.config.js config.env ./
 

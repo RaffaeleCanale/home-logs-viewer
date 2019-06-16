@@ -1,6 +1,7 @@
 const {
     HOME_API_HOST,
     HOME_API_PORT,
+    HOME_API_WS_PORT,
 } = process.env;
 
 export default {
@@ -9,6 +10,7 @@ export default {
     env: {
         HOME_API_HOST,
         HOME_API_PORT,
+        HOME_API_WS_PORT,
     },
 
     /*
@@ -45,7 +47,9 @@ export default {
     /*
      ** Global CSS
      */
-    css: [],
+    css: [
+        'vue2vis/dist/vue2vis.css',
+    ],
     /*
      ** Plugins to load before mounting the App
      */

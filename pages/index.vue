@@ -23,10 +23,6 @@ export default {
     components: {
         Logo,
     },
-
-    mounted() {
-        console.log('process.env.HOME_API_HOST', process.env.HOME_API_HOST);
-    },
 };
 </script>
 

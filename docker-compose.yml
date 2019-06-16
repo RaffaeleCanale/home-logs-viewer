@@ -1,7 +1,7 @@
 version: "3.3"
 
 services:
-    media-center:
+    home-logs-viewer:
         build:
             context: .
             dockerfile: Dockerfile.dev
@@ -17,3 +17,4 @@ services:
             - "./plugins:/etc/wx/plugins/"
             - "./static:/etc/wx/static/"
             - "./store:/etc/wx/store/"
+            - "./lib:/etc/wx/lib/"
