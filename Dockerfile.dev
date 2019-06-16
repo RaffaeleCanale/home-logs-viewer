@@ -1,0 +1,10 @@
+FROM node:10
+WORKDIR /etc/wx/
+
+COPY package.json yarn.lock  ./
+
+RUN yarn install
+
+COPY nuxt.config.js .eslintrc.js ./
+
+CMD ["yarn", "run", "dev"]

@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+    media-center:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        network_mode: host
+        env_file:
+            - config.dev.env
+        volumes:
+            - "./assets:/etc/wx/assets/"
+            - "./components:/etc/wx/components/"
+            - "./layouts:/etc/wx/layouts/"
+            - "./middleware:/etc/wx/middleware/"
+            - "./pages:/etc/wx/pages/"
+            - "./plugins:/etc/wx/plugins/"
+            - "./static:/etc/wx/static/"
+            - "./store:/etc/wx/store/"
