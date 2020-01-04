@@ -41,12 +41,15 @@ export default {
 
     computed: {
         state() {
-            return this.$store.state.home.state[this.name];
+            return this.$store.state.home.state[this.name] || {};
         },
 
 
 
         style() {
+            if (!this.state.light) {
+                return '';
+            }
             const { lux } = this.state.light;
             const brightness = Math.min(255, (lux / 30) * 255);
 

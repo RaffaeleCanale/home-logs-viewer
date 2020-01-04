@@ -47,7 +47,7 @@ export default {
         app: stateProperty('app'),
 
         state() {
-            return this.$store.state.home.state[this.name];
+            return this.$store.state.home.state[this.name] || {};
         },
 
         style() {

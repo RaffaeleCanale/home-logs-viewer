@@ -49,6 +49,9 @@ export default {
 
     methods: {
         getRoomStyle(room) {
+            if (!this.state.presence) {
+                return '';
+            }
             const presence = this.state.presence.rooms[room];
             if (presence === 'yes') {
                 return 'background-color: lightgreen;';

@@ -3,7 +3,7 @@ import axios from 'axios';
 import ProtocolSocket from '~/lib/ProtocolSocket';
 
 async function initializeCommon(dispatch) {
-    this.$apiUrl = `http://${process.env.HOME_API_HOST}:${process.env.HOME_API_PORT}`;
+    this.$apiUrl = `${process.env.HOME_API_HOST}:${process.env.HOME_API_PORT}`;
     this.$apiRequest = axios.create({
         baseURL: `${this.$apiUrl}/api`,
         timeout: 5000,
@@ -72,8 +72,13 @@ export default {
         },
 
         async initialize({ dispatch, commit }) {
-            await initializeCommon.apply(this, [dispatch]);
-            await initSocket.apply(this, [commit]);
+            try {
+                await initializeCommon.apply(this, [dispatch]);
+                await initSocket.apply(this, [commit]);
+            } catch (error) {
+                console.error(error);
+                throw new Error('Failed to init');
+            }
         },
 
         setError({ commit }, error) {

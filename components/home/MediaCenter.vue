@@ -8,7 +8,7 @@
                 On
             </b-form-checkbox>
             Playback: {{ state.playback }}<br>
-            Media: {{ state.media.path }}<br>
+            Media: {{ state.media ? state.media.path : '' }}<br>
             <br>
             <a href="https://media.canale.io">Media</a><br>
             <a href="https://medusa.canale.io">Medusa</a><br>
@@ -45,7 +45,7 @@ export default {
         on: stateProperty('on'),
 
         state() {
-            return this.$store.state.home.state[this.name];
+            return this.$store.state.home.state[this.name] || {};
         },
 
         style() {
