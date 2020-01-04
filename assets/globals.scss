@@ -1,0 +1,31 @@
+$meters: 10vh;
+$light-radius: 0.5;
+
+$living-room-height: 6.28;
+$living-room-width: 4.25;
+$living-room-top: 0.1;
+$living-room-left: 0.1;
+
+$corridor-height: 1.55;
+$corridor-width: 2.08;
+$corridor-top: $living-room-top + 4.73;
+$corridor-left: $living-room-left + $living-room-width;
+
+$bathroom-height: 1.9;
+$bathroom-width: $corridor-width;
+$bathroom-top: $corridor-top - $bathroom-height;
+$bathroom-left: $corridor-left;
+
+$bedroom-height: $living-room-height;
+$bedroom-width: 3;
+$bedroom-top: $living-room-top;
+$bedroom-left: $corridor-left + $corridor-width;
+
+$hue-sensor-width: 0.2;
+$hue-sensor-height: 0.1;
+
+$lg-tv-height: 0.2;
+$lg-tv-width: 1;
+
+$media-center-width: 0.5;
+$media-center-height: 0.3;

@@ -49,7 +49,9 @@ export default {
      */
     css: [
         'vue2vis/dist/vue2vis.css',
+        'assets/globals.scss',
     ],
+
     /*
      ** Plugins to load before mounting the App
      */

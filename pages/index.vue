@@ -1,27 +1,15 @@
 <template>
     <div class="container">
-        <div>
-            <logo />
-            <h1 class="title">
-                home-logs-viewer
-            </h1>
-            <h2 class="subtitle">
-                UI Logs viewer for Home
-            </h2>
-            <div class="links">
-                <a href="https://nuxtjs.org/" target="_blank" class="button--green">Documentation</a>
-                <a href="https://github.com/nuxt/nuxt.js" target="_blank" class="button--grey">GitHub</a>
-            </div>
-        </div>
+        <home />
     </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue';
+import Home from '~/components/Home.vue';
 
 export default {
     components: {
-        Logo,
+        Home,
     },
 };
 </script>

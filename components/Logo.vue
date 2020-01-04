@@ -1,21 +1,21 @@
 <template>
-    <div class="VueToNuxtLogo">
-        <div class="Triangle Triangle--two" />
-        <div class="Triangle Triangle--one" />
-        <div class="Triangle Triangle--three" />
+    <div class="Logo">
         <div class="Triangle Triangle--four" />
+        <div class="Triangle Triangle--one" />
+        <div class="Triangle Triangle--two" />
+
+        <div class="Triangle Triangle--three" />
+        <!-- <div class="Triangle Triangle--five" /> -->
     </div>
 </template>
 
 <style>
-.VueToNuxtLogo {
+.Logo {
   display: inline-block;
-  animation: turn 2s linear forwards 1s;
-  transform: rotateX(180deg);
   position: relative;
   overflow: hidden;
-  height: 180px;
-  width: 245px;
+  height: 400px;
+  width: 540px;
 }
 
 .Triangle {
@@ -27,36 +27,49 @@
 }
 
 .Triangle--one {
-  border-left: 105px solid transparent;
-  border-right: 105px solid transparent;
-  border-bottom: 180px solid #41b883;
+  left: 90px;
+  border-style: solid;
+  border-width: 0 180px 311.8px 180px;
+  border-color: transparent transparent #007bff transparent;
 }
 
 .Triangle--two {
-  top: 30px;
-  left: 35px;
-  animation: goright 0.5s linear forwards 3.5s;
-  border-left: 87.5px solid transparent;
-  border-right: 87.5px solid transparent;
-  border-bottom: 150px solid #3b8070;
+  top: 77.9px;
+  left: 90px;
+  animation: goleft 0.5s linear forwards 3.5s;
+  border-style: solid;
+  border-width: 0 135px 233.8px 135px;
+  border-color: transparent transparent #064991 transparent;
 }
 
 .Triangle--three {
-  top: 60px;
-  left: 35px;
-  animation: goright 0.5s linear forwards 3.5s;
-  border-left: 70px solid transparent;
-  border-right: 70px solid transparent;
-  border-bottom: 120px solid #35495e;
+  top: 155.9px;
+  left: 180px;
+  animation: goleft2 0.5s linear forwards 3.5s;
+  
+  border-style: solid;
+  border-width: 0 90px 155.9px 90px;
+  border-color: transparent transparent #334961 transparent;
 }
 
 .Triangle--four {
-  top: 120px;
-  left: 70px;
-  animation: godown 0.5s linear forwards 3s;
-  border-left: 35px solid transparent;
-  border-right: 35px solid transparent;
-  border-bottom: 60px solid #fff;
+  top: 155.9px;
+  left: 270px;
+  animation: goright 0.5s linear forwards 3.5s;
+
+  border-style: solid;
+  border-width: 0 90px 155.9px 90px;
+  border-color: transparent transparent #064991 transparent;
+}
+
+.Triangle--five {
+  top: 233.8px;
+  left: 270px;
+  animation: goright 0.5s linear forwards 3.5s;
+  
+  border-style: solid;
+  border-width: 0 45px 77.9px 45px;
+  border-color: transparent transparent #334961 transparent;
 }
 
 @keyframes turn {
@@ -71,9 +84,27 @@
   }
 }
 
-@keyframes goright {
+@keyframes goleft {
   100% {
-    left: 70px;
+    left: 0px;
   }
 }
+
+@keyframes goleft2 {
+  100% {
+    left: 90px;
+  }
+}
+
+@keyframes goright {
+  100% {
+    left: 360px;
+  }
+}
+
+/* @keyframes goright2 {
+  100% {
+    left: 360px;
+  }
+} */
 </style>

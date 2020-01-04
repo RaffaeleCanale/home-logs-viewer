@@ -13,6 +13,7 @@ async function initializeCommon(dispatch) {
     await dispatch('logs/initialize');
     await dispatch('errorFiles/initialize');
     await dispatch('errors/initialize');
+    await dispatch('home/initialize');
 }
 
 async function initSocket(commit) {
@@ -31,6 +32,7 @@ async function initSocket(commit) {
                     reason,
                     timestamp: new Date().toISOString(),
                 });
+                commit('home/handleEvent', message);
             }
         },
     });
