@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="home">
         <div id="living-room" :style="getRoomStyle('livingRoom')" />
         <div id="corridor" :style="getRoomStyle('corridor')" />
         <div id="bedroom" :style="getRoomStyle('bedroom')" />
@@ -76,6 +76,12 @@ export default {
 
 <style scoped lang="scss">
 @import 'assets/globals.scss';
+
+.home {
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
 
 .room {
     position: absolute;
