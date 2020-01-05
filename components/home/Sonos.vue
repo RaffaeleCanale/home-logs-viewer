@@ -77,7 +77,7 @@ export default {
         },
 
         state() {
-            return this.$store.state.home.state[this.name];
+            return this.$store.state.home.state[this.name] || {};
         },
     },
 
