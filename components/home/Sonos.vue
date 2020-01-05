@@ -16,9 +16,6 @@
             <form-item label="Play">
                 <b-form-select v-model="play" :options="groups" />
             </form-item>
-
-            {{ state.rooms[room] }}
-            {{ play }}
         </modal>
         <div class="sonos" @click="showModal = !showModal">
             <div v-if="!!play" class="arrow-right" />
