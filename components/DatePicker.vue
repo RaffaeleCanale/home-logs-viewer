@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import get from 'lodash/get';
 import moment from 'moment';
 import DateRangePicker from 'vue2-daterange-picker';
 import 'vue2-daterange-picker/dist/lib/vue-daterange-picker.min.css';
@@ -38,7 +39,7 @@ export default {
         },
 
         minDate() {
-            return this.$store.state.logs.logs[0].timestamp;
+            return get(this.$store.state.logs.logs[0], 'timestamp');
         },
 
         maxDate() {

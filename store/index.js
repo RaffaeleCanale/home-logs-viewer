@@ -3,9 +3,8 @@ import axios from 'axios';
 import ProtocolSocket from '~/lib/ProtocolSocket';
 
 async function initializeCommon(dispatch) {
-    this.$apiUrl = `${process.env.HOME_API_HOST}:${process.env.HOME_API_PORT}`;
     this.$apiRequest = axios.create({
-        baseURL: `${this.$apiUrl}/api`,
+        baseURL: process.env.HOME_API,
         timeout: 5000,
     });
 
@@ -18,8 +17,7 @@ async function initializeCommon(dispatch) {
 
 async function initSocket(commit) {
     this.$apiSocket = new ProtocolSocket({
-        host: process.env.HOME_API_HOST,
-        port: process.env.HOME_API_WS_PORT,
+        host: process.env.HOME_API_WS,
     });
     this.$apiSocket.setHandler({
         onMessage(message) {

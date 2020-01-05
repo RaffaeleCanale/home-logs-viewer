@@ -1,16 +1,14 @@
 const {
-    HOME_API_HOST,
-    HOME_API_PORT,
-    HOME_API_WS_PORT,
+    HOME_API,
+    HOME_API_WS,
 } = process.env;
 
 export default {
     mode: 'universal',
 
     env: {
-        HOME_API_HOST,
-        HOME_API_PORT,
-        HOME_API_WS_PORT,
+        HOME_API,
+        HOME_API_WS,
     },
 
     /*
