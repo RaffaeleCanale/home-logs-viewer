@@ -57,6 +57,9 @@ export default {
         }),
 
         groups() {
+            if (!this.state.playingGroups) {
+                return [];
+            }
             const groups = [{ text: 'Off', value: null }];
             forEach(this.state.playingGroups, (group, name) => {
                 let text;
