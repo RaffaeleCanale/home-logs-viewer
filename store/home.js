@@ -3,21 +3,29 @@ import get from 'lodash/get';
 
 import cloneDeep from 'lodash/cloneDeep';
 import isNumber from 'lodash/isNumber';
+import isFunction from 'lodash/isFunction';
 
 export function stateProperty(path) {
     return {
         get() {
-            const res = get(this.$store.state.home.state[this.name], path);
-            return res;
+            let realPath = path;
+            if (isFunction(path)) {
+                realPath = path.call(this);
+            }
+            return get(this.$store.state.home.state[this.name], realPath);
         },
         set(value) {
-            const oldValue = get(this.$store.state.home.state[this.name], path);
+            let realPath = path;
+            if (isFunction(path)) {
+                realPath = path.call(this);
+            }
+            const oldValue = get(this.$store.state.home.state[this.name], realPath);
             if (isNumber(oldValue)) {
                 value = Number(value);
             }
             this.$store.dispatch('home/update', {
                 component: this.name,
-                path,
+                path: realPath,
                 value,
             });
         },

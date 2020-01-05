@@ -5,42 +5,48 @@
                 {{ name }}
             </template>
 
-            <b-form-checkbox v-model="on" switch>
-                On
-            </b-form-checkbox>
+            <form-item label="Powered">
+                <b-form-checkbox v-model="on" switch size="lg">
+                    {{ on ? 'On' : 'Off' }}
+                </b-form-checkbox>
+            </form-item>
 
-            Brightness
-            <b-form-input
-                v-model="brightness"
-                type="range"
-                min="0"
-                max="1" step="0.1"
-            />
+            <form-item label="Brightness">
+                <b-form-input
+                    v-model="brightness"
+                    type="range"
+                    min="0"
+                    max="1" step="0.1"
+                />
+            </form-item>
 
             <template v-if="isRGB">
-                Hue
-                <b-form-input
-                    v-model="hue"
-                    type="range"
-                    min="0"
-                    max="1" step="0.1"
-                />
-                Saturation
-                <b-form-input
-                    v-model="sat"
-                    type="range"
-                    min="0"
-                    max="1" step="0.1"
-                />
+                <form-item label="Hue">
+                    <b-form-input
+                        v-model="hue"
+                        type="range"
+                        min="0"
+                        max="1" step="0.1"
+                    />
+                </form-item>
+                <form-item label="Saturation">
+                    <b-form-input
+                        v-model="sat"
+                        type="range"
+                        min="0"
+                        max="1" step="0.1"
+                    />
+                </form-item>
             </template>
             <template v-else>
-                Color Temperature
-                <b-form-input
-                    v-model="colorTemperature"
-                    type="range"
-                    min="0"
-                    max="1" step="0.1"
-                />
+                <form-item label="Color Temperature">
+                    <b-form-input
+                        v-model="colorTemperature"
+                        type="range"
+                        min="0"
+                        max="1" step="0.1"
+                    />
+                </form-item>
             </template>
         </modal>
         <div
@@ -59,9 +65,10 @@ import * as Colors from '~/lib/colors';
 
 import { stateProperty } from '~/store/home';
 import Modal from '~/components/Modal.vue';
+import FormItem from '~/components/FormItem.vue';
 
 export default {
-    components: { Modal },
+    components: { Modal, FormItem },
 
     props: {
         name: { type: String, required: true },

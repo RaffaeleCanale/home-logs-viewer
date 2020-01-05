@@ -5,20 +5,24 @@
                 {{ name }}
             </template>
 
-            <b-form-checkbox v-model="on" switch>
-                On
-            </b-form-checkbox>
+            <form-item label="Powered">
+                <b-form-checkbox v-model="on" switch size="lg">
+                    {{ on ? 'On' : 'Off' }}
+                </b-form-checkbox>
+            </form-item>
 
-            Brightness
-            <b-form-input
-                v-model="brightness"
-                type="range"
-                min="0"
-                max="1" step="0.1"
-            />
+            <form-item label="Brightness">
+                <b-form-input
+                    v-model="brightness"
+                    type="range"
+                    min="0"
+                    max="1" step="0.1"
+                />
+            </form-item>
 
-            Effect
-            <b-form-select v-model="effect" :options="effects" />
+            <form-item label="Effect">
+                <b-form-select v-model="effect" :options="effects" />
+            </form-item>
         </modal>
         <div :style="style" class="light" @click="showModal = !showModal" />
     </div>
@@ -28,10 +32,12 @@
 import * as Colors from '~/lib/colors';
 
 import Modal from '~/components/Modal.vue';
+import FormItem from '~/components/FormItem.vue';
+
 import { stateProperty } from '~/store/home';
 
 export default {
-    components: { Modal },
+    components: { FormItem, Modal },
 
     props: {
         name: { type: String, required: true },

@@ -4,12 +4,16 @@
             <template slot="header">
                 {{ name }}
             </template>
-            <b-form-checkbox v-model="on" switch>
-                On
-            </b-form-checkbox>
 
-            App
-            <b-form-select v-model="app" :options="apps" />
+            <form-item label="Powered">
+                <b-form-checkbox v-model="on" switch size="lg">
+                    {{ on ? 'On' : 'Off' }}
+                </b-form-checkbox>
+            </form-item>
+
+            <form-item label="App">
+                <b-form-select v-model="app" :options="apps" />
+            </form-item>
         </modal>
         <div
             class="sensor"
@@ -23,10 +27,12 @@
 
 <script>
 import Modal from '~/components/Modal.vue';
+import FormItem from '~/components/FormItem.vue';
+
 import { stateProperty } from '~/store/home';
 
 export default {
-    components: { Modal },
+    components: { FormItem, Modal },
 
     props: {
         name: { type: String, required: true },

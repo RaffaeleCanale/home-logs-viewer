@@ -5,9 +5,15 @@
                 {{ name }}
             </template>
 
-            Presence: {{ state.presence }}<br>
-            Light: {{ state.light }}<br>
-            Temperature: {{ state.temperature }}
+            <form-item label="Presence">
+                {{ state.presence }}
+            </form-item>
+            <form-item label="Light">
+                {{ state.light }}
+            </form-item>
+            <form-item label="Temperature">
+                {{ state.temperature }}
+            </form-item>
         </modal>
         <div
             :style="style"
@@ -24,9 +30,10 @@ import { mapState } from 'vuex';
 
 import Modal from '~/components/Modal.vue';
 import { stateProperty } from '~/store/home';
+import FormItem from '~/components/FormItem.vue';
 
 export default {
-    components: { Modal },
+    components: { FormItem, Modal },
 
     props: {
         name: { type: String, required: true },

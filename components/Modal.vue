@@ -1,7 +1,7 @@
 <template>
-    <transition v-if="show" name="modal" @click.prevent.stop>
-        <div class="modal-mask">
-            <div class="modal-wrapper">
+    <transition v-if="show" name="modal">
+        <div class="modal-mask" @click="$emit('update:show', false)">
+            <div class="modal-wrapper" @click.stop.prevent>
                 <div class="modal-container">
                     <div class="modal-header">
                         <slot name="header" />
@@ -14,7 +14,7 @@
                     <div class="modal-footer">
                         <slot name="footer">
                             <b-button @click="$emit('update:show', false)">
-                                OK
+                                Close
                             </b-button>
                         </slot>
                     </div>
@@ -46,14 +46,15 @@ export default {
 }
 
 .modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
+  // display: table-cell;
+  // vertical-align: middle;
+  padding-top: 50px;
 }
 
 .modal-container {
-  width: 300px;
+  width: 80vh;
   margin: 0px auto;
-  padding: 20px 30px;
+  // padding: 20px 30px;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
@@ -61,9 +62,10 @@ export default {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.modal-header h3 {
+.modal-header {
   margin-top: 0;
-  color: #42b983;
+  color: #1b078d;
+  font-size: 2em;
 }
 
 .modal-body {

@@ -4,16 +4,19 @@
             <template slot="header">
                 {{ name }}
             </template>
-            <b-form-checkbox v-model="on" switch>
-                On
-            </b-form-checkbox>
-            Playback: {{ state.playback }}<br>
-            Media: {{ state.media ? state.media.path : '' }}<br>
-            <br>
-            <a href="https://media.canale.io">Media</a><br>
-            <a href="https://medusa.canale.io">Medusa</a><br>
-            <a href="https://radarr.canale.io">Radarr</a><br>
-            <a href="https://transmission.canale.io">Transmission</a><br>
+
+            <form-item label="Powered">
+                <b-form-checkbox v-model="on" switch size="lg">
+                    {{ on ? 'On' : 'Off' }}
+                </b-form-checkbox>
+            </form-item>
+
+            <form-item label="Playback">
+                {{ state.playback }}
+            </form-item>
+            <form-item label="Media">
+                {{ state.media ? state.media.path : '' }}
+            </form-item>
         </modal>
         <div
             class="sensor"
@@ -27,9 +30,10 @@
 <script>
 import Modal from '~/components/Modal.vue';
 import { stateProperty } from '~/store/home';
+import FormItem from '~/components/FormItem.vue';
 
 export default {
-    components: { Modal },
+    components: { FormItem, Modal },
 
     props: {
         name: { type: String, required: true },

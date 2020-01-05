@@ -4,6 +4,7 @@
         <div id="corridor" :style="getRoomStyle('corridor')" />
         <div id="bedroom" :style="getRoomStyle('bedroom')" />
         <div id="bathroom" :style="getRoomStyle('bathroom')" />
+        <div id="kitchen" :style="getRoomStyle('kitchen')" />
 
         <hue-light id="living-room-light" name="living-room-light" />
         <hue-light id="corridor-light" name="corridor-light" />
@@ -20,6 +21,11 @@
 
         <lg-tv id="lg-tv" name="living-room-tv" />
         <media-center id="media-center" name="nuc-media-center" />
+
+        <sonos id="living-room-sonos" name="sonos" room="livingRoom" />
+        <sonos id="kitchen-sonos" name="sonos" room="kitchen" />
+        <sonos id="bathroom-sonos" name="sonos" room="bathroom" />
+        <sonos id="bedroom-sonos" name="sonos" room="bedroom" />
     </div>
 </template>
 
@@ -32,6 +38,7 @@ import HueSensor from '~/components/home/HueSensor.vue';
 import Nanoleaf from '~/components/home/Nanoleaf.vue';
 import LgTv from '~/components/home/LgTv.vue';
 import MediaCenter from '~/components/home/MediaCenter.vue';
+import Sonos from '~/components/home/Sonos.vue';
 
 
 export default {
@@ -41,6 +48,7 @@ export default {
         HueSensor,
         MediaCenter,
         Nanoleaf,
+        Sonos,
     },
 
     computed: {
@@ -116,6 +124,13 @@ export default {
     width: $bathroom-width * $meters;
     height: $bathroom-height * $meters;
 }
+#kitchen {
+    @extend .room;
+    top: $kitchen-top * $meters;
+    left: $kitchen-left * $meters;
+    width: $kitchen-width * $meters;
+    height: $kitchen-height * $meters;
+}
 
 #living-room-light {
     position: absolute;
@@ -184,5 +199,26 @@ export default {
     position: absolute;
     left: ($living-room-left + $lg-tv-width + 1.5) * $meters;
     top: ($living-room-top + 4) * $meters;
+}
+
+#living-room-sonos {
+    position: absolute;
+    left: ($living-room-left + 1) * $meters;
+    top: ($living-room-top + $living-room-height - $sonos-height) * $meters;
+}
+#kitchen-sonos {
+    position: absolute;
+    left: ($kitchen-left + 0.3) * $meters;
+    top: ($kitchen-top) * $meters;
+}
+#bathroom-sonos {
+    position: absolute;
+    left: ($bathroom-left + $bathroom-width - $sonos-width - 0.1) * $meters;
+    top: ($bathroom-top) * $meters;
+}
+#bedroom-sonos {
+    position: absolute;
+    left: ($bedroom-left + (($bedroom-width - $sonos-width) / 2)) * $meters;
+    top: ($bedroom-top) * $meters;
 }
 </style>
