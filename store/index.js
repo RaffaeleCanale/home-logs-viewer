@@ -51,6 +51,7 @@ export default {
 
     mutations: {
         setError(state, error) {
+            console.error(error);
             state.error = error;
         },
 
