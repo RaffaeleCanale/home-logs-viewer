@@ -2,9 +2,9 @@
 import axios from 'axios';
 import ProtocolSocket from '~/lib/ProtocolSocket';
 
-async function initializeCommon(dispatch) {
+async function initializeCommon(dispatch, homeApi) {
     this.$apiRequest = axios.create({
-        baseURL: process.env.HOME_API,
+        baseURL: homeApi,
         timeout: 5000,
     });
 
@@ -63,7 +63,7 @@ export default {
     actions: {
         async nuxtServerInit({ dispatch }) {
             try {
-                await initializeCommon.apply(this, [dispatch]);
+                await initializeCommon.apply(this, [dispatch, process.env.HOME_API_SERVER]);
             } catch (error) {
                 console.error(error);
                 throw new Error('Failed to init server');
@@ -72,7 +72,7 @@ export default {
 
         async initialize({ dispatch, commit }) {
             try {
-                await initializeCommon.apply(this, [dispatch]);
+                await initializeCommon.apply(this, [dispatch, process.env.HOME_API]);
                 await initSocket.apply(this, [commit]);
             } catch (error) {
                 console.error(error);

@@ -1,5 +1,6 @@
 const {
     HOME_API,
+    HOME_API_SERVER,
     HOME_API_WS,
 } = process.env;
 
@@ -8,6 +9,7 @@ export default {
 
     env: {
         HOME_API,
+        HOME_API_SERVER,
         HOME_API_WS,
     },
 
