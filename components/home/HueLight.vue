@@ -82,34 +82,33 @@ export default {
     },
 
     computed: {
-        on: stateProperty('lightState.on'),
-        brightness: stateProperty('lightState.brightness'),
-        colorTemperature: stateProperty('lightState.colorTemperature'),
-        hue: stateProperty('lightState.hue'),
-        sat: stateProperty('lightState.sat'),
+        on: stateProperty('on'),
+        brightness: stateProperty('brightness'),
+        colorTemperature: stateProperty('colorTemperature'),
+        hue: stateProperty('hue'),
+        sat: stateProperty('sat'),
 
         isRGB() {
             const state = this.$store.state.home.state[this.name];
-            return state && state.lightState.hue !== undefined;
+            return state && state.hue !== undefined;
         },
 
         style() {
             const state = this.$store.state.home.state[this.name];
-            if (!state || !state.lightState) {
+            if (!state) {
                 return '';
             }
-            const light = state.lightState;
             let color = 'darkgrey';
             let result = '';
-            if (light.on) {
+            if (state.on) {
                 if (this.isRGB) {
-                    const hue = light.hue * 360;
-                    const sat = Math.round(light.sat * 100);
-                    color = `hsl(${hue}, ${sat}%, 50%, ${light.brightness})`;
+                    const hue = state.hue * 360;
+                    const sat = Math.round(state.sat * 100);
+                    color = `hsl(${hue}, ${sat}%, 50%, ${state.brightness})`;
                 } else {
-                    const tp = light.colorTemperature * 347 + 153;
+                    const tp = state.colorTemperature * 347 + 153;
                     const { r, g, b } = Colors.ctToRgb(tp);
-                    color = `rgba(${r}, ${g}, ${b}, ${light.brightness})`;
+                    color = `rgba(${r}, ${g}, ${b}, ${state.brightness})`;
                 }
                 result += `box-shadow: 0px 0px 20px 10px ${color};`;
                 color = 'white';
@@ -125,12 +124,12 @@ export default {
 
     methods: {
         async onClick() {
-            const { lightState } = this.$store.state.home.state[this.name];
+            const state = this.$store.state.home.state[this.name];
 
             this.$store.dispatch('home/update', {
                 component: this.name,
-                path: 'lightState.on',
-                value: !lightState.on,
+                path: 'on',
+                value: !state.on,
             });
         },
     },

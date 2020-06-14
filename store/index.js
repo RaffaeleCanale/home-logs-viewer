@@ -1,6 +1,7 @@
 // eslint-disable-next-line
 import axios from 'axios';
-import ProtocolSocket from '~/lib/ProtocolSocket';
+import ReconnectWebSocket from '@canale/websocket/lib/ReconnectWebSocket';
+import ProtocolSocket from '@canale/websocket/lib/protocol/ProtocolSocket';
 
 async function initializeCommon(dispatch, homeApi) {
     this.$apiRequest = axios.create({
@@ -16,10 +17,8 @@ async function initializeCommon(dispatch, homeApi) {
 }
 
 async function initSocket(commit) {
-    this.$apiSocket = new ProtocolSocket({
-        host: process.env.HOME_API_WS,
-    });
-    this.$apiSocket.setHandler({
+    class SocketHandler {
+        // eslint-disable-next-line class-methods-use-this
         onMessage(message) {
             const { type, target, newState, reason } = message;
             if (type === 'state_update') {
@@ -32,12 +31,24 @@ async function initSocket(commit) {
                 });
                 commit('home/handleEvent', message);
             }
-        },
-    });
-    await this.$apiSocket.connect('HomeLogsViewer');
+        }
+
+        // eslint-disable-next-line class-methods-use-this
+        onError(error) {
+            console.error(error);
+        }
+    }
+    const socket = new ReconnectWebSocket(
+        process.env.HOME_API_WS,
+        WebSocket,
+    )
+    this.$apiSocket = new ProtocolSocket(
+        socket,
+        new SocketHandler(),
+    );
+    await socket.connect();
     await new Promise(resolve => setTimeout(resolve, 2000));
-    await this.$apiSocket.sendRequest({
-        type: 'subscribe_request',
+    await this.$apiSocket.sendRequest('state', {
         target: '',
     });
 }
