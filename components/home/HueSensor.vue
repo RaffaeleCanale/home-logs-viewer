@@ -1,40 +1,17 @@
 <template>
-    <div>
-        <modal :show.sync="showModal">
-            <template slot="header">
-                {{ name }}
-            </template>
-
-            <form-item label="Presence">
-                {{ state.presence }}
-            </form-item>
-            <form-item label="Light">
-                {{ state.light }}
-            </form-item>
-            <form-item label="Temperature">
-                {{ state.temperature }}
-            </form-item>
-        </modal>
-        <div
-            :style="style"
-            class="sensor"
-            :class="{ vertical }"
-            @click="showModal = !showModal"
-        />
-    </div>
+    <div
+        :style="style"
+        class="sensor"
+        :class="{ vertical }"
+        @click="onClick"
+    />
 </template>
 
 <script>
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { mapState } from 'vuex';
 
-import Modal from '~/components/Modal.vue';
-import { stateProperty } from '~/store/home';
-import FormItem from '~/components/FormItem.vue';
-
 export default {
-    components: { FormItem, Modal },
-
     props: {
         name: { type: String, required: true },
         vertical: { type: Boolean, default: false },
@@ -50,8 +27,6 @@ export default {
         state() {
             return this.$store.state.home.state[this.name] || {};
         },
-
-
 
         style() {
             if (!this.state.light) {
@@ -69,6 +44,13 @@ export default {
     },
 
     methods: {
+        onClick() {
+            this.$store.dispatch('home/update', {
+                component: this.name,
+                path: 'lastPresenceStart',
+                value: Date.now(),
+            });
+        },
     },
 
 }
@@ -79,7 +61,6 @@ export default {
 
 .sensor {
     cursor: pointer;
-    height: 100px;
     width: $hue-sensor-width * $meters;
     height: $hue-sensor-height * $meters;
     background-color: red;

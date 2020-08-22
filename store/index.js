@@ -2,6 +2,9 @@
 import axios from 'axios';
 import ReconnectWebSocket from '@canale/websocket/lib/ReconnectWebSocket';
 import ProtocolSocket from '@canale/websocket/lib/protocol/ProtocolSocket';
+import { DEV_OPTIONS } from '@canale/websocket/lib/WebSocketWrapper';
+
+DEV_OPTIONS.logger = (a, b) => console.log(a, JSON.stringify(b));
 
 async function initializeCommon(dispatch, homeApi) {
     this.$apiRequest = axios.create({
@@ -20,17 +23,14 @@ async function initSocket(commit) {
     class SocketHandler {
         // eslint-disable-next-line class-methods-use-this
         onMessage(message) {
-            const { type, target, newState, reason } = message;
-            if (type === 'state_update') {
-                commit('logs/appendLog', {
-                    state: {
-                        [target]: newState,
-                    },
-                    reason,
-                    timestamp: new Date().toISOString(),
-                });
-                commit('home/handleEvent', message);
-            }
+            const { target, value } = message;
+            commit('logs/appendLog', {
+                state: {
+                    [target]: value,
+                },
+                timestamp: new Date().toISOString(),
+            });
+            commit('home/handleEvent', message);
         }
 
         // eslint-disable-next-line class-methods-use-this

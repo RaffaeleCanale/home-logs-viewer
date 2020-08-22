@@ -53,8 +53,8 @@ export default {
         },
 
         handleEvent(state, event) {
-            const { target, newState } = event;
-            state.state[target] = newState;
+            const { target, value } = event;
+            state.state[target] = value;
         },
     },
 
@@ -77,16 +77,20 @@ export default {
 
         async update({ commit, state }, { component, path, value }) {
             const copy = cloneDeep(state.state[component]);
+            console.log(component);
+            // console.log(JSON.stringify(state.state, null, 4));
             set(copy, path, value);
 
+            console.log(copy);
             const { data } = await this.$apiRequest.post('/state', {
                 path: component,
                 value: copy,
             });
-            commit('handleEvent', {
-                target: component,
-                newState: data.state,
-            });
+            console.log(data);
+            // commit('handleEvent', {
+            //     target: component,
+            //     newState: data.state,
+            // });
         }
     },
 };
