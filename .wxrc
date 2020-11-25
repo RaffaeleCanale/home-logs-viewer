@@ -1,4 +1,5 @@
 {
+    "project": "home-service-logs",
     "config": [
         "config.env"
     ]
