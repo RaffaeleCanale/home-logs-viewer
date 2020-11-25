@@ -53,8 +53,8 @@ export default {
         },
 
         handleEvent(state, event) {
-            const { target, newState } = event;
-            state.state[target] = newState;
+            const { target, value } = event;
+            state.state[target] = value;
         },
     },
 
@@ -83,10 +83,10 @@ export default {
                 path: component,
                 value: copy,
             });
-            commit('handleEvent', {
-                target: component,
-                newState: data.state,
-            });
+            // commit('handleEvent', {
+            //     target: component,
+            //     newState: data.state,
+            // });
         }
     },
 };

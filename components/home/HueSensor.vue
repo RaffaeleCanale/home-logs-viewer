@@ -1,40 +1,17 @@
 <template>
-    <div>
-        <modal :show.sync="showModal">
-            <template slot="header">
-                {{ name }}
-            </template>
-
-            <form-item label="Presence">
-                {{ state.presence }}
-            </form-item>
-            <form-item label="Light">
-                {{ state.light }}
-            </form-item>
-            <form-item label="Temperature">
-                {{ state.temperature }}
-            </form-item>
-        </modal>
-        <div
-            :style="style"
-            class="sensor"
-            :class="{ vertical }"
-            @click="showModal = !showModal"
-        />
-    </div>
+    <div
+        :style="style"
+        class="sensor"
+        :class="{ vertical }"
+        @click="onClick"
+    />
 </template>
 
 <script>
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { mapState } from 'vuex';
 
-import Modal from '~/components/Modal.vue';
-import { stateProperty } from '~/store/home';
-import FormItem from '~/components/FormItem.vue';
-
 export default {
-    components: { FormItem, Modal },
-
     props: {
         name: { type: String, required: true },
         vertical: { type: Boolean, default: false },
@@ -43,6 +20,7 @@ export default {
     data() {
         return {
             showModal: false,
+            $_timeout: null,
         };
     },
 
@@ -50,8 +28,6 @@ export default {
         state() {
             return this.$store.state.home.state[this.name] || {};
         },
-
-
 
         style() {
             if (!this.state.light) {
@@ -61,7 +37,7 @@ export default {
             const brightness = Math.min(255, (lux / 30) * 255);
 
             let style = `background-color: rgb(${brightness}, ${brightness}, ${brightness});`;
-            if (this.state.presence) {
+            if (this.state.lastPresenceStart > this.state.lastPresenceEnd) {
                 style += 'border: 3px solid yellow;';
             }
             return style;
@@ -69,6 +45,24 @@ export default {
     },
 
     methods: {
+        onClick() {
+            this.$store.dispatch('home/update', {
+                component: this.name,
+                path: 'lastPresenceStart',
+                value: Date.now(),
+            });
+
+            if (this.$_timeout) {
+                clearTimeout(this.$_timeout);
+            }
+            this.$_timeout = setTimeout(() => {
+                this.$store.dispatch('home/update', {
+                    component: this.name,
+                    path: 'lastPresenceEnd',
+                    value: Date.now(),
+                });
+            }, 3000);
+        },
     },
 
 }
@@ -79,7 +73,6 @@ export default {
 
 .sensor {
     cursor: pointer;
-    height: 100px;
     width: $hue-sensor-width * $meters;
     height: $hue-sensor-height * $meters;
     background-color: red;

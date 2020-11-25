@@ -608,6 +608,28 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@canale/emitter@^2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@canale/emitter/-/emitter-2.1.5.tgz#e747f3bb01e21cd071893113a446b32a2bdcdbba"
+  integrity sha512-NCi+meslf91O+FWQE85B6hWOdNh32ch8B6KPitzZ5Ztp3GlrujiRZ/8GLUGn0KD22q0ANKlrS96KgKLEjxgpew==
+  dependencies:
+    lodash.isequal "^4.5.0"
+
+"@canale/logger@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@canale/logger/-/logger-2.0.1.tgz#a94cd7f012f2ff4a41676a5dec07c902ee99d81f"
+  integrity sha512-KKDwdQ0FpLVmkui23w0xkRHBt7WbxylTkB6pw3MkfwnpvRbXpCQ1bpHBeP4/4/ANdViDYJOPrR5sF6oFsLPr8g==
+
+"@canale/websocket@^2.1.8":
+  version "2.1.8"
+  resolved "https://registry.yarnpkg.com/@canale/websocket/-/websocket-2.1.8.tgz#5a5982ca2c87dd5b4d04b5a1ec32e276fc9d8abe"
+  integrity sha512-OLEHqoyzuaZYQq6M0+A5HS6v/XW2dvUFelIjhWfz2PtMWecVlLm9eCgBZ+S+/jNZRiydhwjSWTlMrE6BSJswjQ==
+  dependencies:
+    "@canale/emitter" "^2.1.5"
+    "@canale/logger" "^2.0.1"
+    uuid "^7.0.2"
+    ws "^7.2.2"
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
@@ -4278,6 +4300,11 @@ lodash._reinterpolate@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/lodash._reinterpolate/-/lodash._reinterpolate-3.0.0.tgz#0ccf2d89166af03b3663c796538b75ac6e114d9d"
 
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
+
 lodash.isplainobject@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
@@ -7284,6 +7311,11 @@ uuid@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
 
+uuid@^7.0.2:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.3.tgz#c5c9f2c8cf25dc0a372c4df1441c41f5bd0c680b"
+  integrity sha512-DPSke0pXhTZgoF/d+WSt2QaKMCFSfx7QegxEWT+JOuHF5aWrKEn0G+ztjuJg/gG8/ItK+rbPCD/yNv8yyih6Cg==
+
 validate-npm-package-license@^3.0.1:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/validate-npm-package-license/-/validate-npm-package-license-3.0.4.tgz#fc91f6b9c7ba15c857f4cb2c5defeec39d4f410a"
@@ -7626,6 +7658,11 @@ ws@^7.0.0:
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.0.0.tgz#79351cbc3f784b3c20d0821baf4b4ff809ffbf51"
   dependencies:
     async-limiter "^1.0.0"
+
+ws@^7.2.2:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-7.3.0.tgz#4b2f7f219b3d3737bc1a2fbf145d825b94d38ffd"
+  integrity sha512-iFtXzngZVXPGgpTlP1rBqsUK82p9tKqsWRPg5L56egiljujJT3vGAYnHANvFxBieXrTFavhzhxW52jnaWV+w2w==
 
 xdg-basedir@^3.0.0:
   version "3.0.0"
