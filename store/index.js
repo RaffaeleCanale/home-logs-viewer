@@ -4,7 +4,7 @@ import ReconnectWebSocket from '@canale/websocket/lib/ReconnectWebSocket';
 import ProtocolSocket from '@canale/websocket/lib/protocol/ProtocolSocket';
 import { DEV_OPTIONS } from '@canale/websocket/lib/WebSocketWrapper';
 
-DEV_OPTIONS.logger = (a, b) => console.log(a, JSON.stringify(b));
+DEV_OPTIONS.logger = (a, b) => console.log(a, JSON.stringify(b, null, 4));
 
 async function initializeCommon(dispatch, homeApi) {
     this.$apiRequest = axios.create({

@@ -77,16 +77,12 @@ export default {
 
         async update({ commit, state }, { component, path, value }) {
             const copy = cloneDeep(state.state[component]);
-            console.log(component);
-            // console.log(JSON.stringify(state.state, null, 4));
             set(copy, path, value);
 
-            console.log(copy);
             const { data } = await this.$apiRequest.post('/state', {
                 path: component,
                 value: copy,
             });
-            console.log(data);
             // commit('handleEvent', {
             //     target: component,
             //     newState: data.state,

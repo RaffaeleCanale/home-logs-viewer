@@ -1,10 +1,35 @@
 <template>
     <div class="home">
-        <room id="living-room" room="livingRoom" />
-        <room id="corridor" room="corridor" />
-        <room id="bedroom" room="bedroom" />
-        <room id="bathroom" room="bathroom" />
-        <room id="kitchen" room="kitchen" />
+        <room
+            id="living-room"
+            room="livingRoom"
+            light="living-room-light"
+            sensor="living-room-sensor"
+        />
+        <room
+            id="corridor"
+            room="corridor"
+            light="corridor-light"
+            sensor="corridor-sensor"
+        />
+        <room
+            id="bedroom"
+            room="bedroom"
+            light="bedroom-light"
+            sensor="bedroom-sensor"
+        />
+        <room
+            id="bathroom"
+            room="bathroom"
+            light="bathroom-light-1"
+            sensor="corridor-sensor"
+        />
+        <room
+            id="kitchen"
+            room="kitchen"
+            light="living-room-light"
+            sensor="living-room-sensor"
+        />
 
         <hue-light id="living-room-light" name="living-room-light" />
         <hue-light id="corridor-light" name="corridor-light" />
@@ -20,6 +45,7 @@
         <hue-sensor id="corridor-sensor" name="corridor-sensor" />
 
         <hue-remote id="living-room-remote" name="living-room-remote" vertical />
+        <hue-remote id="bedroom-remote" name="bedroom-remote" vertical />
 
         <lg-tv id="lg-tv" name="living-room-tv" />
         <media-center id="media-center" name="nuc-media-center" />
@@ -28,6 +54,8 @@
         <sonos id="kitchen-sonos" name="sonos" room="kitchen" />
         <sonos id="bathroom-sonos" name="sonos" room="bathroom" />
         <sonos id="bedroom-sonos" name="sonos" room="bedroom" />
+
+        <env-data id="env-data" />
     </div>
 </template>
 
@@ -42,12 +70,14 @@ import Nanoleaf from '~/components/home/Nanoleaf.vue';
 import LgTv from '~/components/home/LgTv.vue';
 import MediaCenter from '~/components/home/MediaCenter.vue';
 import Sonos from '~/components/home/Sonos.vue';
+import EnvData from '~/components/home/EnvData.vue';
 import Room from '~/components/home/Room.vue';
 
 
 export default {
     components: {
         LgTv,
+        EnvData,
         HueLight,
         HueRemote,
         HueSensor,
@@ -91,8 +121,6 @@ export default {
 
 .room {
     position: absolute;
-    background-color: lightgray;
-    border: solid;
 }
 
 .light {
@@ -106,6 +134,12 @@ export default {
 .strip {
     position: absolute;
     background-color: white;
+}
+
+#env-data {
+    position: absolute;
+    left: ($bedroom-left + $bedroom-width + 0.2) * $meters;
+    top: 0.2 * $meters;
 }
 
 #living-room {
@@ -187,6 +221,12 @@ export default {
     position: absolute;
     left: ($living-room-left + $living-room-width - $hue-remote-height) * $meters;
     top: ($living-room-top + $living-room-height - 2) * $meters;
+}
+
+#bedroom-remote {
+    position: absolute;
+    left: ($bedroom-left + $bedroom-width - $hue-remote-height) * $meters;
+    top: ($bedroom-top + $bedroom-height - 2) * $meters;
 }
 
 #living-room-sensor {

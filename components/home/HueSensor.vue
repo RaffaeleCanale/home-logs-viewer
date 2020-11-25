@@ -20,6 +20,7 @@ export default {
     data() {
         return {
             showModal: false,
+            $_timeout: null,
         };
     },
 
@@ -36,7 +37,7 @@ export default {
             const brightness = Math.min(255, (lux / 30) * 255);
 
             let style = `background-color: rgb(${brightness}, ${brightness}, ${brightness});`;
-            if (this.state.presence) {
+            if (this.state.lastPresenceStart > this.state.lastPresenceEnd) {
                 style += 'border: 3px solid yellow;';
             }
             return style;
@@ -50,6 +51,17 @@ export default {
                 path: 'lastPresenceStart',
                 value: Date.now(),
             });
+
+            if (this.$_timeout) {
+                clearTimeout(this.$_timeout);
+            }
+            this.$_timeout = setTimeout(() => {
+                this.$store.dispatch('home/update', {
+                    component: this.name,
+                    path: 'lastPresenceEnd',
+                    value: Date.now(),
+                });
+            }, 3000);
         },
     },
 
