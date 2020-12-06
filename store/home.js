@@ -79,10 +79,12 @@ export default {
             const copy = cloneDeep(state.state[component]);
             set(copy, path, value);
 
+            // console.log('UPDATE', copy);
             const { data } = await this.$apiRequest.post('/state', {
                 path: component,
                 value: copy,
             });
+            // console.log('data', data);
             // commit('handleEvent', {
             //     target: component,
             //     newState: data.state,

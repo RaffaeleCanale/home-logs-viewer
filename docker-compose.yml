@@ -17,4 +17,5 @@ services:
             - "./plugins:/etc/wx/plugins/"
             - "./static:/etc/wx/static/"
             - "./store:/etc/wx/store/"
+            - "./templates:/etc/wx/templates/"
             - "./lib:/etc/wx/lib/"

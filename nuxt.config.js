@@ -5,7 +5,7 @@ const {
 } = process.env;
 
 export default {
-    mode: 'universal',
+    mode: 'spa',
 
     env: {
         HOME_API,
@@ -74,6 +74,9 @@ export default {
      ** Build configuration
      */
     build: {
+        transpile: [
+            '@splidejs/vue-splide',
+        ],
         /*
          ** You can extend webpack config here
          */

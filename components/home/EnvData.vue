@@ -35,13 +35,18 @@ export default {
 
         isDayLight() {
             const luxes = sensors.map(
-                sensor => this.$store.state.home.state[sensor].light.lux,
+                sensor => this.getLux(sensor),
             );
             return luxes.some(lux => lux > 6);
         },
     },
 
     methods: {
+        getLux(sensor) {
+            const state = this.$store.state.home.state[sensor];
+            return state && state.light.lux;
+        },
+
         async toggleDaylight() {
             const value = this.isDayLight ? 0 : 10;
 

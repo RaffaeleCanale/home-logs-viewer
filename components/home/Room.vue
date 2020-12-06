@@ -62,6 +62,10 @@ export default {
         overlayColor() {
             const sensor = this.state[this.sensor];
             const light = this.state[this.light];
+            if (!sensor || !sensor) {
+                return 'black';
+            }
+
             if (sensor.light.lux > 5) {
                 return 'rgba(20, 20, 20, 0)';
             }
@@ -77,7 +81,7 @@ export default {
 
         overlayTransitionTime() {
             const light = this.state[this.light];
-            return light.transitionTime;
+            return light && light.transitionTime;
         },
     },
 

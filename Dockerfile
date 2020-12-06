@@ -1,4 +1,4 @@
-FROM node:10
+FROM node:14
 WORKDIR /etc/wx/
 
 COPY package.json yarn.lock  ./
@@ -13,6 +13,7 @@ COPY pages/ pages/
 COPY plugins/ plugins/
 COPY static/ static/
 COPY store/ store/
+COPY templates/ templates/
 COPY lib/ lib/
 
 COPY nuxt.config.js config.env ./
